@@ -1,0 +1,62 @@
+# Source configuration.
+#
+# Phase 1 ships working adapters for:
+#   company_careers -> MANUAL_REVIEW stub (real discovery arrives in Phase 2)
+#   generic         -> MANUAL_REVIEW stub (HTML parsing arrives in Phase 3)
+#   fixture         -> LOCAL TEST DATA ONLY, disabled by default
+# Every other source below has NO adapter yet. Enabling one without an adapter
+# is safe: it is reported as NOT_AVAILABLE and nothing is faked or scraped.
+#
+# Per-source overrides of "defaults" are allowed, e.g.:
+#   workday:
+#     enabled: true
+#     request_delay: 3.0
+#     timeout: 30
+
+defaults:
+  request_delay: 1.5      # seconds between HTTP requests to the same source
+  timeout: 20             # seconds per request
+  max_retries: 2          # retries for transient errors only (5xx / timeouts)
+  backoff_factor: 2.0     # exponential backoff base (never retries 403/429/CAPTCHA)
+  cache_ttl: 3600         # reuse a cached page for this many seconds (0 disables)
+
+sources:
+  company_careers:
+    enabled: true
+  greenhouse:
+    enabled: true
+  lever:
+    enabled: true
+  workday:
+    enabled: true
+  ashby:
+    enabled: true
+  smartrecruiters:
+    enabled: true
+  icims:
+    enabled: true
+  taleo:
+    enabled: true
+  jobvite:
+    enabled: true
+  bamboohr:
+    enabled: true
+  recruitee:
+    enabled: true
+  teamtailor:
+    enabled: true
+  successfactors:
+    enabled: true
+  generic:
+    enabled: true
+  indeed:
+    enabled: true
+  hirist:
+    enabled: true
+  naukri:
+    enabled: true
+  linkedin:
+    enabled: true
+  fixture:
+    enabled: false        # TEST DATA ONLY - set true to run the pipeline fully offline
+    mode: board
