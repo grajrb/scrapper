@@ -1,0 +1,76 @@
+# Search / filter / scoring configuration.
+# Phase 1 ships these as EXAMPLE values for the built-in test data -
+# tune them to your own roles, locations, experience and skills.
+
+roles:
+  - software engineer
+  - backend engineer
+  - software developer
+  - sde
+
+locations:
+  - Bangalore
+  - Bengaluru
+  - Hyderabad
+  - Pune
+  - Mumbai
+  - Remote
+
+countries: []              # empty = any country
+
+# Alternate spellings so "Bengaluru" matches "Bangalore" etc.
+location_aliases:
+  Bangalore: [Bengaluru]
+  Bengaluru: [Bangalore]
+  Mumbai: [Bombay]
+  Bombay: [Mumbai]
+
+remote_preference: any     # any | prefer | require | onsite
+
+experience_min: 2
+experience_max: 5
+
+skills:
+  - Python
+  - SQL
+  - AWS
+  - Django
+  - FastAPI
+
+preferred_skills:
+  - Docker
+  - Kubernetes
+  - Redis
+
+excluded_keywords:
+  - internship
+  - director
+  - vice president
+
+employment_types:
+  - full_time
+  - contract
+
+industries: []             # reserved for Phase 5 (jobs carry no industry field yet)
+
+minimum_match_score: 50    # below this a job is stored but not counted as relevant
+high_match_score: 75       # used for reports and the "High Match" export sheet
+
+scoring:
+  weights:                 # must total 100 for a 0-100 score
+    title: 30
+    skills: 30
+    experience: 20
+    location: 15
+    employment_type: 5
+  # How to score a component whose data is missing from the posting:
+  #   neutral = half credit + warning (default), zero = 0 + warning, full = full credit + warning
+  unknown_field_policy: neutral
+
+filtering:
+  skill_match_mode: any    # any = at least min_skill_matches, all = every required skill
+  min_skill_matches: 1
+  excluded_keyword_fields: [title]   # title and/or description
+  require_target_company: true       # drop jobs that do not belong to a target company
+  new_status_days: 7                 # keep status NEW this long after first_seen
+  inactive_after_days: 14            # mark jobs INACTIVE if not seen for this long

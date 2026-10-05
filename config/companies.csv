@@ -1,0 +1,9 @@
+company_name,company_domain,careers_url,priority,enabled
+Acme Cloud,acmecloud.example,,A,true
+Nimbus Data,nimbusdata.example,,A,true
+Quantum Retail,quantumretail.example,,B,true
+Bluebird Health,bluebirdhealth.example,,A,true
+Orion Logistics,orionlogistics.example,,B,true
+Fernwave Media,fernwavemedia.example,,C,false
+Ironpeak Analytics,ironpeakanalytics.example,,B,true
+Lumenary Education,lumenaryeducation.example,,C,true
