@@ -141,4 +141,56 @@ class HttpClient:
             raise FetchError(f"HTTP {status} - unexpected response", url=url,
                              http_status=status)
 
-# __HTTP_PART2__
+    # -- internals ---------------------------------------------------------
+    @staticmethod
+    def _cache_key(url: str, params: Optional[dict]) -> str:
+        raw = url + "|" + json.dumps(params or {}, sort_keys=True, default=str)
+        return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+    @staticmethod
+    def _looks_blocked(status: int, body: str) -> bool:
+        if status >= 400 and body:
+            low = body[:4000].casefold()
+            return any(marker in low for marker in _CAPTCHA_MARKERS)
+        return False
+
+    def _respect_rate_limit(self) -> None:
+        if self._last_request_at is None or self.request_delay <= 0:
+            return
+        elapsed = self.clock() - self._last_request_at
+        remaining = self.request_delay - elapsed
+        if remaining > 0:
+            self.sleep_fn(remaining)
+
+    def _mark_request(self) -> None:
+        self._last_request_at = self.clock()
+
+    def _backoff(self, attempt: int) -> None:
+        self.sleep_fn(self.backoff_factor * (2 ** attempt))
+
+    def _read_cache(self, key: str) -> Optional[str]:
+        if key in self._memory_cache:
+            return self._memory_cache[key]
+        if not self.cache_ttl or not self.cache_dir:
+            return None
+        path = self.cache_dir / f"{key}.json"
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            return None
+        if time.time() - float(data.get("fetched_at", 0)) > self.cache_ttl:
+            return None
+        return data.get("body")
+
+    def _write_cache(self, key: str, body: str) -> None:
+        self._memory_cache[key] = body
+        if not self.cache_ttl or not self.cache_dir:
+            return
+        try:
+            self.cache_dir.mkdir(parents=True, exist_ok=True)
+            (self.cache_dir / f"{key}.json").write_text(
+                json.dumps({"fetched_at": time.time(), "body": body}),
+                encoding="utf-8")
+        except OSError:
+            pass
+
