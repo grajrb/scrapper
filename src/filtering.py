@@ -14,10 +14,15 @@ from .config import SearchConfig
 from .models import Job, MatchLevel, RemoteStatus
 
 _WS = re.compile(r"\s+")
+_WORDS = re.compile(r"\w+")
 
 
 def _cf(text: Optional[str]) -> str:
     return (text or "").casefold()
+
+
+def _tokens(text: str) -> set[str]:
+    return set(_WORDS.findall(text.casefold()))
 
 
 def location_variants(cfg: SearchConfig) -> list[str]:
@@ -39,7 +44,7 @@ def title_match_level(title: Optional[str],
     title_cf = _cf(title)
     if not title_cf:
         return MatchLevel.UNKNOWN, None
-    title_tokens = set(_WS.findall(title_cf))
+    title_tokens = _tokens(title_cf)
     best_level, best_role = MatchLevel.NONE, None
     for role in roles:
         role_cf = _cf(role)
@@ -47,7 +52,7 @@ def title_match_level(title: Optional[str],
             continue
         if role_cf in title_cf:
             return MatchLevel.FULL, role
-        role_tokens = set(_WS.findall(role_cf))
+        role_tokens = _tokens(role_cf)
         if role_tokens and title_tokens:
             overlap = len(role_tokens & title_tokens) / len(role_tokens)
             if overlap >= 0.5 and best_level is not MatchLevel.FULL:

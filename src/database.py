@@ -348,6 +348,11 @@ class Database:
         ).fetchall()
         return [dict(r) for r in rows]
 
+    def get_source_row(self, key: str) -> Optional[dict[str, Any]]:
+        row = self._execute("SELECT * FROM sources WHERE source_key=?",
+                            (key,)).fetchone()
+        return dict(row) if row else None
+
     # -- scrape runs -------------------------------------------------------
     def start_run(self, trigger: str = "manual") -> int:
         with self.conn:

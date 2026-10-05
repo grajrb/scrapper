@@ -13,13 +13,13 @@ import time
 from datetime import datetime, timedelta, timezone
 from typing import Optional
 
-from .adapters import create_adapter, get_adapter_class
-from .config import AppConfig
-from .database import Database
-from .deduplication import Deduplicator, normalize_company_name
-from .filtering import JobFilter
-from .logging_config import get_logger
-from .models import (
+from ..adapters import create_adapter, get_adapter_class
+from ..config import AppConfig
+from ..database import Database
+from ..deduplication import Deduplicator, normalize_company_name
+from ..filtering import JobFilter
+from ..logging_config import get_logger
+from ..models import (
     AdapterResult,
     Company,
     Job,
@@ -31,7 +31,7 @@ from .models import (
     SearchQuery,
     utcnow_iso,
 )
-from .scoring import score_job
+from ..scoring import score_job
 
 _STATUS_PRIORITY = {
     ResultStatus.OK: 0,
@@ -234,7 +234,7 @@ class JobService:
     # -- internals ---------------------------------------------------------
     @staticmethod
     def _source_type_value(key: str) -> str:
-        from .models import source_type
+        from ..models import source_type
         return source_type(key).value
 
     @staticmethod
