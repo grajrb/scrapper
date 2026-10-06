@@ -28,7 +28,7 @@ def test_non_matching_title_rejected(make_job, search_config):
 
 
 def test_wrong_location_rejected(make_job, search_config):
-    job = make_job(location="Chennai, India", city="Chennai")
+    job = make_job(location="Kolkata, India", city="Kolkata")
     decision = JobFilter(search_config).evaluate(job)
     assert not decision.accepted
     assert "location" in decision.notes[0].lower()
@@ -95,7 +95,7 @@ def test_title_match_levels(search_config):
     level, role = title_match_level("Senior Backend Engineer",
                                     search_config.roles)
     assert level is MatchLevel.FULL
-    level, _ = title_match_level("Data Engineer", search_config.roles)
+    level, _ = title_match_level("Sales Manager", search_config.roles)
     assert level in (MatchLevel.PARTIAL, MatchLevel.NONE)
 
 

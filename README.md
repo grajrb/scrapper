@@ -131,13 +131,13 @@ git-ignored. **No credentials are required or stored.**
 Important `search_config.yaml` keys:
 
 ```yaml
-roles: [software engineer, backend engineer, software developer, sde]
-locations: [Bangalore, Bengaluru, Hyderabad, Pune, Mumbai, Remote]
+roles: [software engineer, sde, backend engineer, data analyst, genai engineer]
+locations: [Bangalore, Bengaluru, Hyderabad, Chennai, Mumbai, Gurgaon, Pune, Remote]
 remote_preference: any        # any | prefer | require | onsite
-experience_min: 2
-experience_max: 5
-skills: [Python, SQL, AWS, Django, FastAPI]
-preferred_skills: [Docker, Kubernetes, Redis]
+experience_min: 3
+experience_max: 6
+skills: [Python, Node.js, React, SQL, Azure]
+preferred_skills: [GenAI, RAG, LLM, FastAPI, Microservices, Power BI]
 excluded_keywords: [internship, director, vice president]
 minimum_match_score: 50       # below this: stored, but not counted as relevant
 high_match_score: 75          # report + "High Match" sheet threshold
@@ -169,10 +169,16 @@ Company B,https://companyb.com,,B,true
 
 - `careers_url` may be empty — discovery arrives in Phase 2 (paste it now so
   it is used as soon as Phase 2 lands).
-- `priority` = `A`/`B`/`C`; ties in match score are broken by priority.
+- `priority` = `A`/`B`/`C`; ties in match score are broken by priority
+  (A = Phase-1/top-30 picks, B = best-fit tiers, C = the rest).
 - `enabled=false` skips the company without deleting it.
-- 8 fictional `.example` companies ship as Phase-1 test data — replace them
-  with your real list (~420 rows supported; the companies table is indexed).
+- **Loaded list:** `config/companies.csv` currently holds your 2026–2027
+  master list — **400 unique companies** (deduped from the 420-row document:
+  repeated entries like "HSBC (expanded GCC)" vs "HSBC (Tech)", "Target"
+  appearing twice, etc. were merged), plus **8 disabled `.example` test
+  companies** that power the offline fixture tests. ~250 rows carry an
+  official domain for Phase-2 discovery; the rest are blank by design
+  (never guessed).
 
 ## 6. Adding a new source
 

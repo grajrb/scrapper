@@ -74,9 +74,10 @@ def format_status_report(stats: dict[str, Any],
     lines.append("-" * 54)
     for row in source_rows:
         enabled = "" if row.get("enabled") else " (off in config)"
+        status_text = str(row.get("status", "")) + enabled
         lines.append(
             f"{row.get('source_key', ''):<18}"
-            f"{str(row.get('status', '')) + enabled:<16}"
+            f"{status_text:<24}"
             f"{str(row.get('jobs_found', 0)):<8}"
             f"{row.get('last_run_at') or '-'}")
     lines.append(_RULE)

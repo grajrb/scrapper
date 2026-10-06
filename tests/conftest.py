@@ -35,8 +35,12 @@ def db(tmp_path):
 
 
 @pytest.fixture()
-def make_job():
-    """Factory for normalized Job objects with sensible defaults."""
+def make_job(search_config):
+    """Factory for normalized Job objects.
+
+    Defaults follow the live search_config so tests stay consistent with
+    whatever roles/skills/locations are configured.
+    """
     def _make(**overrides) -> Job:
         defaults = dict(
             company_name="Acme Cloud",
@@ -52,8 +56,8 @@ def make_job():
             employment_type="full_time",
             experience_min=3,
             experience_max=5,
-            skills=["Python", "SQL", "AWS"],
-            description="Build APIs with Python, SQL and AWS.",
+            skills=list(search_config.skills),
+            description="Build APIs with Python, Node.js, SQL and Azure.",
             posted_date="2026-10-01",
             target_company_match="Acme Cloud",
             match_confidence="HIGH",

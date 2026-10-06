@@ -1,9 +1,414 @@
 company_name,company_domain,careers_url,priority,enabled
-Acme Cloud,acmecloud.example,,A,true
-Nimbus Data,nimbusdata.example,,A,true
-Quantum Retail,quantumretail.example,,B,true
-Bluebird Health,bluebirdhealth.example,,A,true
-Orion Logistics,orionlogistics.example,,B,true
+Google,google.com,,A,true
+Microsoft,microsoft.com,,A,true
+Amazon,amazon.com,,A,true
+Meta,meta.com,,A,true
+Apple,apple.com,,B,true
+Netflix,netflix.com,,B,true
+Uber,uber.com,,B,true
+LinkedIn,linkedin.com,,B,true
+Atlassian,atlassian.com,,A,true
+Stripe,stripe.com,,A,true
+Airbnb,airbnb.com,,B,true
+Salesforce,salesforce.com,,B,true
+Adobe,adobe.com,,A,true
+Intuit,intuit.com,,B,true
+Workday,workday.com,,B,true
+ServiceNow,servicenow.com,,B,true
+Snowflake,snowflake.com,,B,true
+Databricks,databricks.com,,A,true
+Confluent,confluent.com,,B,true
+Shopify,shopify.com,,B,true
+Twitch (Amazon),twitch.tv,,B,true
+Dropbox,dropbox.com,,B,true
+GitHub (Microsoft),github.com,,B,true
+HashiCorp (IBM),hashicorp.com,,B,true
+Postman,postman.com,,B,true
+Figma,figma.com,,B,true
+Zepto,zeptonow.com,,A,true
+CRED,cred.club,,A,true
+Razorpay,razorpay.com,,A,true
+Swiggy,swiggy.com,,A,true
+Zomato,zomato.com,,B,true
+Meesho,meesho.com,,B,true
+Groww,groww.in,,B,true
+PhonePe,phonepe.com,,B,true
+BrowserStack,browserstack.com,,B,true
+Glean,glean.com,,A,true
+Sarvam AI,sarvam.ai,,A,true
+Krutrim (Ola),,,B,true
+Navi,navi.com,,B,true
+Slice,,,B,true
+Jupiter,jupiter.money,,B,true
+Fi Money,femoney.com,,B,true
+Open Financial,,,B,true
+Cashfree,cashfree.com,,B,true
+Porter,porter.in,,B,true
+Udaan,udaan.com,,B,true
+Dunzo,dunzo.com,,B,true
+Ola Electric,olaelectric.com,,B,true
+Rapido,rapido.in,,B,true
+Lenskart,lenskart.com,,B,true
+Target Corporation,target.com,,A,true
+Walmart Global Tech,walmart.com,,A,true
+Nike Technology,nike.com,,A,true
+Levi's Technology,levi.com,,B,true
+H&M (Tech),hm.com,,B,true
+Puma (Tech),puma.com,,B,true
+Under Armour,underarmour.com,,B,true
+Marks & Spencer,marksandspencer.com,,B,true
+Decathlon (Tech),decathlon.in,,B,true
+IKEA (Tech),ikea.com,,B,true
+Mercedes-Benz R&D,mercedes-benz.com,,A,true
+Bosch Global ST,bosch.com,,C,true
+Continental,continental.com,,C,true
+Harman (Samsung),harman.com,,C,true
+Aptiv,aptiv.com,,C,true
+ZF Friedrichshafen,zf.com,,C,true
+Volvo Technology,,,C,true
+Mahindra (Tech),mahindra.com,,C,true
+Tata Elxsi,tataelxsi.com,,C,true
+Honeywell Tech,honeywell.com,,C,true
+Schneider Electric,schneider-electric.com,,C,true
+Siemens,siemens.com,,C,true
+ABB,abb.com,,C,true
+Philips Healthcare,philips.com,,C,true
+Siemens Healthineers,siemens-healthineers.com,,C,true
+GE Healthcare,gehealthcare.com,,C,true
+Abbott,abbott.com,,C,true
+Baxter,baxter.com,,C,true
+Practo,practo.com,,C,true
+MediBuddy,medibuddy.in,,C,true
+1mg (Tata),1mg.com,,C,true
+Niramai,niramai.com,,C,true
+Innovaccer,innovaccer.com,,C,true
+Booking.com,booking.com,,A,true
+Agoda,agoda.com,,C,true
+Expedia,expedia.com,,C,true
+MakeMyTrip,makemytrip.com,,C,true
+Cleartrip (Flipkart),cleartrip.com,,C,true
+ixigo,ixigo.com,,C,true
+FedEx (Digital),fedex.com,,C,true
+DHL (IT),dhl.com,,C,true
+Maersk (Tech),maersk.com,,C,true
+Locus.sh,locus.sh,,C,true
+LogiNext,,,C,true
+Delhivery,delhivery.com,,C,true
+Ecom Express,ecomexpress.in,,C,true
+Shadowfax,shadowfax.in,,C,true
+Shiprocket,shiprocket.in,,C,true
+Paytm,paytm.com,,C,true
+BharatPe,bharatpe.com,,C,true
+Setu,setu.co,,C,true
+M2P Fintech,m2p.finance,,C,true
+Visa,visa.com,,C,true
+Mastercard,mastercard.com,,C,true
+American Express,americanexpress.com,,C,true
+PayPal,paypal.com,,C,true
+Western Union,westernunion.com,,C,true
+Cred Stacks,,,C,true
+KreditBee,kreditbee.in,,C,true
+MoneyTap,moneytap.com,,C,true
+Freshworks,freshworks.com,,A,true
+Zoho,zoho.com,,B,true
+Chargebee,chargebee.com,,B,true
+Leadsquared,leadsquared.com,,B,true
+CleverTap,clevertap.com,,B,true
+MoEngage,moengage.com,,B,true
+WebEngage,webengage.com,,B,true
+Capillary Tech,capillarytech.com,,B,true
+Wingify,wingify.com,,B,true
+Perfios,perfios.com,,B,true
+Mindtree (LTI),ltimindtree.com,,B,true
+Mphasis,mphasis.com,,B,true
+Zensar,zensar.com,,B,true
+InMobi,inmobi.com,,A,true
+Glance (InMobi),,,C,true
+PubMatic,pubmatic.com,,C,true
+Media.net,media.net,,C,true
+Affle,affle.com,,C,true
+AppsFlyer,appsflyer.com,,C,true
+Sprinklr,sprinklr.com,,C,true
+Quantcast,quantcast.com,,C,true
+Criteo,criteo.com,,C,true
+Oracle (Cloud),oracle.com,,B,true
+mParticle,mparticle.com,,C,true
+Segment (Twilio),segment.com,,C,true
+NoBroker,nobroker.in,,C,true
+Housing.com (PropTiger),housing.com,,C,true
+MagicBricks,magicbricks.com,,C,true
+Square Yards,squareyards.com,,C,true
+Compass,compass.com,,C,true
+Zillow India,zillow.com,,C,true
+99acres (Info Edge),99acres.com,,C,true
+Goldman Sachs,goldmansachs.com,,A,true
+Morgan Stanley,morganstanley.com,,A,true
+JPMC (AI Lab),jpmorgan.com,,A,true
+Standard Chartered,sc.com,,B,true
+Deutsche Bank,db.com,,A,true
+Barclays,barclays.co.uk,,A,true
+BNY Mellon,bnymellon.com,,B,true
+Fidelity Investments,fidelity.com,,B,true
+NatWest Group,natwestgroup.com,,B,true
+Societe Generale,societegenerale.com,,B,true
+UBS,ubs.com,,B,true
+HDFC Bank (Tech),hdfcbank.com,,B,true
+ICICI Bank (Tech),icicibank.com,,B,true
+Citibank (Tech),citi.com,,B,true
+Credit Suisse,,,B,true
+HSBC (Tech),hsbc.com,,B,true
+Nomura,nomura.com,,B,true
+Macquarie,macquarie.com,,B,true
+Karya,,,B,true
+Rephrase.ai (Adobe),,,B,true
+Gan.ai,,,B,true
+GreyOrange,,,B,true
+Uniphore,uniphore.com,,B,true
+Observe.ai,observe.ai,,A,true
+Eka Software,,,B,true
+Darwinbox,darwinbox.com,,B,true
+Haptik,,,B,true
+Yellow.ai,yellow.ai,,B,true
+Leena AI,,,B,true
+Vernacular.ai,,,B,true
+CoRover.ai,,,B,true
+Avaamo,,,B,true
+Mihup,,,B,true
+Better.com,,,B,true
+Zscaler,zscaler.com,,B,true
+Cloudflare,cloudflare.com,,A,true
+SentinelOne,sentinelone.com,,B,true
+CrowdStrike,crowdstrike.com,,B,true
+AppDynamics (Cisco),appdynamics.com,,B,true
+New Relic,newrelic.com,,B,true
+Datadog,datadog.com,,A,true
+PagerDuty,pagerduty.com,,B,true
+Eightfold.ai,eightfold.ai,,B,true
+Phenom People,phenom.com,,B,true
+MindTickle,,,B,true
+Icertis,icertis.com,,B,true
+G2,g2.com,,B,true
+HighRadius,highradius.com,,B,true
+Zenoti,zenoti.com,,B,true
+Druva,druva.com,,B,true
+Rubrik,rubrik.com,,B,true
+Palo Alto,paloaltonetworks.com,,B,true
+Rakuten,rakuten.com,,C,true
+Mercari,mercari.com,,A,true
+Coupang,coupang.com,,A,true
+Grab,grab.com,,C,true
+Gojek,,,C,true
+Twilio,twilio.com,,C,true
+Lyft,lyft.com,,C,true
+Block (Square),block.xyz,,C,true
+Coinbase,coinbase.com,,C,true
+Ripple,ripple.com,,C,true
+ByteDance (TikTok),bytedance.com,,C,true
+Xiaomi (India Tech),mi.com,,C,true
+Samsung (SRI-B),samsung.com,,C,true
+Byju's / Aakash,byjus.com,,C,true
+Unacademy,unacademy.com,,C,true
+upGrad,upgrad.com,,C,true
+Physics Wallah,pw.live,,C,true
+Coursera (India),coursera.org,,C,true
+Duolingo,duolingo.com,,C,true
+Vedantu,vedantu.com,,C,true
+Great Learning,greatlearning.in,,C,true
+Mu Sigma,musigma.com,,A,true
+Fractal Analytics,fractalanalytics.com,,A,true
+Tiger Analytics,tigeranalytics.com,,B,true
+ThoughtSpot,thoughtspot.com,,A,true
+Domo,domo.com,,B,true
+Looker (Google),looker.com,,A,true
+MicroStrategy,microstrategy.com,,B,true
+Qlik,qlik.com,,B,true
+Alteryx,alteryx.com,,B,true
+TIBCO,tibco.com,,B,true
+SAS Institute,sas.com,,B,true
+Teradata,teradata.com,,B,true
+Ethos,,,C,true
+Flipkart,flipkart.com,,C,true
+OYO,oyorooms.com,,C,true
+Cure.fit,cure.fit,,C,true
+ShareChat,sharechat.com,,C,true
+Moj,,,C,true
+Dailyhunt,dailyhunt.com,,C,true
+Upstox,upstox.com,,C,true
+Shoonya,,,C,true
+Cleartax,cleartax.in,,C,true
+Khatabook,,,C,true
+Fyle,,,C,true
+Happay,,,C,true
+Slang Labs,,,C,true
+Mad Street Den,,,C,true
+Infra.market,infra.market,,C,true
+Moglix,moglix.com,,C,true
+Industrybuying,,,C,true
+Tracxn,tracxn.com,,C,true
+CoinDCX,coindcx.com,,C,true
+Policybazaar,policybazaar.com,,C,true
+Digit Insurance,godigit.com,,C,true
+LendingKart,lendingkart.com,,C,true
+Growfo,,,C,true
+HDFC Securities (Tech),hdfcsecurities.com,,C,true
+Motilal Oswal (Tech),motilaloswal.com,,C,true
+Verifone (India Ops),verifone.com,,C,true
+Sanketha,,,C,true
+Indifi,indifi.com,,C,true
+EaseBuzz,easebuzz.in,,C,true
+Instamojo,instamojo.com,,C,true
+UniSupply,,,C,true
+Asanify,,,C,true
+BeNext,,,C,true
+Apptio (India Ops),apptio.com,,C,true
+Vedic Maths Academy,,,C,true
+Arpit Academy,,,C,true
+Testbook,testbook.com,,C,true
+Scaler Academy,scaler.com,,C,true
+Skill Academy,,,C,true
+Pepo,,,C,true
+Josh (Tech),,,C,true
+Gaana,gaana.com,,C,true
+Wynk Music,wynk.in,,C,true
+Nasscom Foundation,,,C,true
+ISB Ventures,,,C,true
+Vertex Ventures,,,C,true
+Matrix Partners (Ops),,,C,true
+Sequoia Capital (Tech),,,C,true
+ITC Ventures (Portfolio),,,C,true
+Apollo Hospitals (Tech),apollohospitals.com,,C,true
+Manipal Hospital (Tech),manipalhospitals.com,,C,true
+Narayana Health (Tech),narayanahealth.org,,C,true
+Max Healthcare (Tech),maxhealthcare.in,,C,true
+Amedisys (India),,,C,true
+Cloudmetrics,,,C,true
+Credo,,,C,true
+Hexnode,hexnode.com,,C,true
+Unified,,,C,true
+Opstream,,,C,true
+Rediscover,,,C,true
+Snapbizz,,,C,true
+Arpit (FinTech),,,C,true
+Infinimap,,,C,true
+Perplexity AI (India),perplexity.ai,,B,true
+Anthropic (India ops),anthropic.com,,B,true
+Hugging Face (India),huggingface.co,,B,true
+Together AI (India),together.ai,,B,true
+Weights & Biases,wandb.ai,,B,true
+Modal Labs (India),modal.com,,B,true
+Qdrant (India),,,B,true
+Scale AI (India),scale.com,,B,true
+Stability AI (India),stability.ai,,B,true
+Mux (India ops),mux.com,,B,true
+Accenture (GenAI Labs),accenture.com,,B,true
+Cognizant (GenAI Ops),cognizant.com,,B,true
+Capgemini (Cloud AI),capgemini.com,,B,true
+TCS (AI Labs/GenAI),tcs.com,,B,true
+Infosys (AI Services),infosys.com,,B,true
+Wipro (GenAI Practice),wipro.com,,B,true
+HCL (AI Labs),hcltech.com,,B,true
+ANZ,anz.com,,B,true
+Commonwealth Bank (CBA),commbank.com.au,,B,true
+Westpac,westpac.com.au,,B,true
+NAB (National Australia Bank),nab.com.au,,B,true
+DBS Bank (Singapore),dbs.com,,B,true
+OCBC Bank (Singapore),ocbc.com,,B,true
+UOB (United Overseas Bank),uob.com,,B,true
+Maybank (Malaysia),,,B,true
+Bangkok Bank (Thailand),,,B,true
+Bank of Tokyo-Mitsubishi UFJ,,,B,true
+Sumitomo Mitsui Financial,,,B,true
+Mizuho Financial (Japan),,,B,true
+Nationwide Insurance Group,,,B,true
+Prudential (Asia),,,B,true
+AIA Group (Insurance),aia.com,,B,true
+ING Bank (Netherlands),ing.com,,B,true
+Intel,intel.com,,C,true
+NVIDIA,nvidia.com,,C,true
+AMD,amd.com,,C,true
+Qualcomm,qualcomm.com,,C,true
+Broadcom,broadcom.com,,C,true
+Sony (Electronics),sony.com,,C,true
+Panasonic,panasonic.com,,C,true
+LG Electronics,lg.com,,C,true
+Ricoh,ricoh.com,,C,true
+Canon,canon.com,,C,true
+Nikon,nikon.com,,C,true
+GoPro,gopro.com,,C,true
+DJI (if India ops),dji.com,,C,true
+Lenovo,lenovo.com,,C,true
+ASUS,asus.com,,C,true
+Razer,razer.com,,C,true
+3M (Tech),3m.com,,C,true
+Corning,corning.com,,C,true
+AT&T (India Tech),att.com,,C,true
+Verizon (India GCC),verizon.com,,C,true
+T-Mobile (US),t-mobile.com,,C,true
+Orange (Europe/India),orange.com,,C,true
+Deutsche Telekom (Germany),telekom.com,,C,true
+Vodafone (UK/Europe),vodafone.com,,C,true
+BT Group (British Telecom),bt.com,,C,true
+Swisscom (Switzerland),swisscom.ch,,C,true
+TeliaSonera (Scandinavia),telia.com,,C,true
+Telefonica (Spain),telefonica.com,,C,true
+KPN (Netherlands),kpn.com,,C,true
+China Mobile (International),,,C,true
+NTT DoCoMo (Japan),,,C,true
+KDDI (Japan),,,C,true
+SK Telecom (South Korea),,,C,true
+LG U+ (South Korea),,,C,true
+Jio (Reliance India),jio.com,,C,true
+Airtel (Bharti India),airtel.in,,C,true
+Idea Cellular,,,C,true
+Vi (Vodafone Idea),,,C,true
+Cisco (expanded GCC),cisco.com,,C,true
+Juniper Networks,juniper.net,,C,true
+Arista Networks,aristanetworks.com,,C,true
+F5 Networks,f5.com,,C,true
+Fortinet,fortinet.com,,C,true
+Sophos,sophos.com,,C,true
+Trend Micro,trendmicro.com,,C,true
+Citrix (Cloud),citrix.com,,C,true
+VMware/Broadcom (Cloud),vmware.com,,C,true
+Dell/EMC (Storage),dell.com,,C,true
+HPE (Hewlett Packard),hpe.com,,C,true
+NetApp,netapp.com,,C,true
+Pure Storage,purestorage.com,,C,true
+Nutanix,nutanix.com,,C,true
+Equinix (Colocation),equinix.com,,C,true
+Akamai Technologies,akamai.com,,C,true
+Limelight Networks,,,C,true
+DigitalOcean,digitalocean.com,,C,true
+Linode (Akamai),linode.com,,C,true
+Fastly,fastly.com,,C,true
+SAP (expanded India),sap.com,,C,true
+SailPoint (Identity),sailpoint.com,,C,true
+Okta (Authentication),okta.com,,C,true
+Auth0 (now Okta),auth0.com,,C,true
+JFrog,jfrog.com,,C,true
+GitLab (expanded India),gitlab.com,,C,true
+Canonical/Ubuntu,canonical.com,,C,true
+Red Hat/IBM (expanded),redhat.com,,C,true
+Elastic (Search + Analytics),elastic.co,,C,true
+MongoDB,mongodb.com,,C,true
+Redis (In-memory DB),redis.io,,C,true
+CockroachDB,,,C,true
+PlanetScale (MySQL),planetscale.com,,C,true
+Supabase (PostgreSQL),supabase.com,,C,true
+MariaDB,mariadb.com,,C,true
+Neo4j (Graph DB),neo4j.com,,C,true
+InfluxData (Time-series),influxdata.com,,C,true
+Timescale (PostgreSQL),timescale.com,,C,true
+Acme Cloud,acmecloud.example,,C,false
+Nimbus Data,nimbusdata.example,,C,false
+Quantum Retail,quantumretail.example,,C,false
+Bluebird Health,bluebirdhealth.example,,C,false
+Orion Logistics,orionlogistics.example,,C,false
 Fernwave Media,fernwavemedia.example,,C,false
-Ironpeak Analytics,ironpeakanalytics.example,,B,true
-Lumenary Education,lumenaryeducation.example,,C,true
+Ironpeak Analytics,ironpeakanalytics.example,,C,false
+Lumenary Education,lumenaryeducation.example,,C,false
+
+
+
+
+

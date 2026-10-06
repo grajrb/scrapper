@@ -15,14 +15,29 @@ def test_first_fixture_run_counts(db, app_config):
     assert counters.jobs_found == 14          # raw records in fixture file
     assert counters.new_jobs == 12            # 2 records are duplicates
     assert counters.duplicates == 2
-    assert counters.filtered_out == 6         # keyword/location/skills/etc.
-    assert counters.high_match >= 1
     assert counters.errors == 0
     assert counters.manual_review == 0
 
     stats = db.get_stats()
     assert stats["jobs_total"] == 12
     assert stats["job_source_refs"] == 14     # 12 canonical + 2 mirror refs
+
+    # every stored job is either scored (passed the filter) or filtered out
+    assert counters.filtered_out + stats["jobs_scored"] == 12
+    assert counters.high_match >= 1
+
+    # known rejections must remain rejected under the live config
+    by_title = {j.title: j for j in db.list_jobs(active_only=False)}
+    assert by_title["Director of Engineering"].match_score is None
+    assert by_title["Vice President of Engineering"].match_score is None
+    assert by_title["Software Intern"].match_score is None
+    zenith = next(j for j in db.list_jobs(active_only=False)
+                  if j.company_name == "Zenith Systems")
+    assert zenith.target_company_match is None
+    assert zenith.match_score is None
+
+    # a strong matching job must be scored
+    assert by_title["Senior Backend Engineer"].match_score is not None
 
 
 def test_second_run_detects_no_new_jobs(db, app_config):
@@ -52,7 +67,6 @@ def test_non_target_company_is_not_matched(db, app_config):
     assert zenith[0].target_company_match is None
     assert zenith[0].match_score is None      # rejected by target filter
 
-
 def test_jobs_marked_as_fixture(db, app_config):
     service = JobService(app_config, db)
     service.run(sources=["fixture"])
@@ -69,8 +83,9 @@ def test_source_without_adapter_reports_not_available(db, app_config):
 
 def test_generic_source_yields_manual_review(db, app_config):
     service = JobService(app_config, db)
-    counters, _ = service.run(sources=["generic"])
-    assert counters.manual_review == len(app_config.enabled_companies)
+    expected = min(10, len(app_config.enabled_companies))
+    counters, _ = service.run(sources=["generic"], limit=10)
+    assert counters.manual_review == expected
     assert counters.errors == 0
     errors = db.get_errors(limit=50)
     assert errors and all(e["error_type"] == "MANUAL_REVIEW" for e in errors)

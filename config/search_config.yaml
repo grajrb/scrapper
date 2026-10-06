@@ -1,46 +1,61 @@
 # Search / filter / scoring configuration.
-# Phase 1 ships these as EXAMPLE values for the built-in test data -
-# tune them to your own roles, locations, experience and skills.
+# Tuned for the 2026-2027 target profile:
+#   SDE2 / Data Analyst / GenAI Engineer, 30-50 LPA, Oct 2027
+# Tune freely - every value below is plain YAML.
 
 roles:
   - software engineer
-  - backend engineer
-  - software developer
   - sde
+  - backend engineer
+  - full stack engineer
+  - software developer
+  - data analyst
+  - senior data analyst
+  - data engineer
+  - genai engineer
+  - generative ai engineer
+  - ml engineer
+  - machine learning engineer
 
 locations:
   - Bangalore
   - Bengaluru
   - Hyderabad
-  - Pune
+  - Chennai
   - Mumbai
+  - Gurgaon
+  - Pune
   - Remote
 
 countries: []              # empty = any country
 
-# Alternate spellings so "Bengaluru" matches "Bangalore" etc.
+# Alternate spellings so "Gurugram" matches "Gurgaon" etc.
 location_aliases:
   Bangalore: [Bengaluru]
   Bengaluru: [Bangalore]
   Mumbai: [Bombay]
   Bombay: [Mumbai]
+  Gurgaon: [Gurugram]
 
 remote_preference: any     # any | prefer | require | onsite
 
-experience_min: 2
-experience_max: 5
+experience_min: 3
+experience_max: 6
 
 skills:
   - Python
+  - Node.js
+  - React
   - SQL
-  - AWS
-  - Django
-  - FastAPI
+  - Azure
 
 preferred_skills:
-  - Docker
-  - Kubernetes
-  - Redis
+  - GenAI
+  - RAG
+  - LLM
+  - FastAPI
+  - Microservices
+  - Power BI
 
 excluded_keywords:
   - internship
@@ -74,3 +89,4 @@ filtering:
   require_target_company: true       # drop jobs that do not belong to a target company
   new_status_days: 7                 # keep status NEW this long after first_seen
   inactive_after_days: 14            # mark jobs INACTIVE if not seen for this long
+

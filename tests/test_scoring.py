@@ -3,9 +3,11 @@ from src.scoring import score_job
 
 
 def test_strong_match_scores_high(make_job, search_config):
+    # job offering every required + preferred skill from the live config
     job = make_job(title="Backend Engineer",
-                   skills=["Python", "SQL", "AWS", "Django", "FastAPI"],
-                   description="Python SQL AWS Django FastAPI",
+                   skills=list(search_config.skills),
+                   description=" ".join(search_config.skills
+                                        + search_config.preferred_skills),
                    employment_type="full_time")
     result = score_job(job, search_config)
     # every component matches: expect a high score with reasons
