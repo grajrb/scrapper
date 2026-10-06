@@ -282,6 +282,46 @@ class Database:
                 ids[company.company_name] = cid
         return ids
 
+    def prune_companies(self, keep_names: list[str]) -> dict[str, int]:
+        """Remove companies no longer present in the config CSV.
+
+        Companies still referenced by jobs are disabled instead of deleted
+        so job history and foreign keys stay intact (jobs are never deleted
+        just because a company or listing disappeared).
+
+        Returns {"deleted": n, "disabled": m}.
+        """
+        keep = {n for n in keep_names}
+        deleted = 0
+        disabled = 0
+        if keep:
+            sql = ("SELECT id FROM companies WHERE company_name NOT IN ("
+                   + ",".join("?" * len(keep)) + ")")
+            params: tuple = tuple(keep)
+        else:  # empty config = clear everything stale
+            sql = "SELECT id FROM companies"
+            params = ()
+        with self.conn:
+            stale = self._execute(sql, params).fetchall()
+            for row in stale:
+                cid = int(row["id"])
+                has_jobs = self._execute(
+                    "SELECT 1 FROM jobs WHERE company_id = ? LIMIT 1",
+                    (cid,),
+                ).fetchone()
+                if has_jobs:
+                    self._execute(
+                        "UPDATE companies SET enabled = 0, updated_at = ? "
+                        "WHERE id = ?",
+                        (utcnow_iso(), cid),
+                    )
+                    disabled += 1
+                else:
+                    self._execute("DELETE FROM companies WHERE id = ?", (cid,))
+                    deleted += 1
+        return {"deleted": deleted, "disabled": disabled}
+
+
     def get_companies(self, enabled_only: bool = False) -> list[Company]:
         sql = "SELECT * FROM companies"
         if enabled_only:
@@ -387,12 +427,44 @@ class Database:
                   error_type: str = "ERROR", message: str = "",
                   http_status: Optional[int] = None) -> None:
         with self.conn:
+            if error_type == "MANUAL_REVIEW":
+                # MANUAL_REVIEW is a *status*, not an event: keep exactly one
+                # row per (source, company) so repeated runs do not inflate
+                # scrape_errors with identical records.
+                self._execute(
+                    "DELETE FROM scrape_errors "
+                    "WHERE error_type = 'MANUAL_REVIEW' "
+                    "AND (source IS ?) AND (company IS ?)",
+                    (source, company))
             self._execute(
                 "INSERT INTO scrape_errors (run_id, source, company, url, "
                 "error_type, http_status, message, occurred_at) "
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                 (run_id, source, company, url, error_type, http_status,
                  message, utcnow_iso()))
+
+    def prune_stale_manual_review(self, keep_names: list[str]) -> int:
+        """Drop MANUAL_REVIEW rows for companies no longer in the config.
+
+        Source-level rows (company IS NULL) are always kept. Returns the
+        number of rows removed.
+        """
+        keep = {n for n in keep_names}
+        if keep:
+            sql = ("DELETE FROM scrape_errors "
+                   "WHERE error_type = 'MANUAL_REVIEW' "
+                   "AND company IS NOT NULL "
+                   "AND company NOT IN ("
+                   + ",".join("?" * len(keep)) + ")")
+            params: tuple = tuple(keep)
+        else:
+            sql = ("DELETE FROM scrape_errors "
+                   "WHERE error_type = 'MANUAL_REVIEW' "
+                   "AND company IS NOT NULL")
+            params = ()
+        with self.conn:
+            cur = self._execute(sql, params)
+            return int(cur.rowcount or 0)
 
     def get_errors(self, limit: int = 20) -> list[dict[str, Any]]:
         rows = self._execute(

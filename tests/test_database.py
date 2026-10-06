@@ -50,6 +50,62 @@ def test_disabled_company_flag(db):
     assert len(db.get_companies(enabled_only=True)) == 0
 
 
+def test_prune_companies_removes_stale_and_disables_referenced(db):
+    ids = db.upsert_companies([
+        Company("Acme Cloud", "acmecloud.example", None, "A", True),
+        Company("Ghost Co", None, None, "B", True),
+        Company("Phantom Co", None, None, "C", True),
+    ])
+    _insert_sample(db, company_id=ids["Ghost Co"])  # job keeps Ghost alive
+
+    result = db.prune_companies(["Acme Cloud"])
+
+    assert result == {"deleted": 1, "disabled": 1}
+    remaining = {c.company_name: c for c in db.get_companies()}
+    assert set(remaining) == {"Acme Cloud", "Ghost Co"}
+    assert remaining["Acme Cloud"].enabled is True
+    assert remaining["Ghost Co"].enabled is False  # history preserved
+    # the job itself was never touched
+    assert db.count_jobs(active_only=False) == 1
+
+
+def test_manual_review_rows_are_deduped_per_source_company(db):
+    for _ in range(3):  # simulate three identical runs
+        db.log_error(None, source="generic", company="Acme Cloud",
+                     error_type="MANUAL_REVIEW",
+                     message="No careers URL configured")
+    db.log_error(None, source="generic", company="Nimbus Data",
+                 error_type="MANUAL_REVIEW", message="No careers URL")
+    db.log_error(None, source="indeed", company=None,
+                 error_type="MANUAL_REVIEW", message="Blocks automation")
+    for _ in range(2):  # real errors keep their history
+        db.log_error(None, source="lever", error_type="ERROR",
+                     message="timeout after 20s")
+
+    errors = db.get_errors(limit=100)
+    mr = [e for e in errors if e["error_type"] == "MANUAL_REVIEW"]
+    real = [e for e in errors if e["error_type"] == "ERROR"]
+    assert len(mr) == 3        # 2 company-level + 1 source-level, no copies
+    assert len(real) == 2      # event-style errors are not deduped
+
+
+def test_prune_stale_manual_review_keeps_source_rows(db):
+    db.log_error(None, source="generic", company="Ghost Co",
+                 error_type="MANUAL_REVIEW", message="stale")
+    db.log_error(None, source="generic", company="Acme Cloud",
+                 error_type="MANUAL_REVIEW", message="kept")
+    db.log_error(None, source="indeed", company=None,
+                 error_type="MANUAL_REVIEW", message="source-level")
+
+    removed = db.prune_stale_manual_review(["Acme Cloud"])
+
+    assert removed == 1
+    remaining = {(e["source"], e["company"]) for e in db.get_errors(100)}
+    assert ("generic", "Acme Cloud") in remaining
+    assert ("indeed", None) in remaining          # source-level survives
+    assert ("generic", "Ghost Co") not in remaining
+
+
 def _insert_sample(db, **overrides) -> Job:
     fields = dict(
         company_name="Acme Cloud", source="fixture", source_job_id="fx-1",

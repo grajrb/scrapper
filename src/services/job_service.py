@@ -127,6 +127,15 @@ class JobService:
         self._evaluated_this_run = set()
 
         self.db.upsert_companies(self.cfg.companies)
+        pruned = self.db.prune_companies(
+            [c.company_name for c in self.cfg.companies])
+        stale_mr = self.db.prune_stale_manual_review(
+            [c.company_name for c in self.cfg.companies])
+        if pruned["deleted"] or pruned["disabled"] or stale_mr:
+            self.log.info(
+                "Pruned stale rows: %d company(s) deleted, %d disabled "
+                "(still referenced by jobs), %d stale MANUAL_REVIEW row(s).",
+                pruned["deleted"], pruned["disabled"], stale_mr)
         self._rebuild_indexes()
         self.db.ensure_sources(
             {key: self._source_type_value(key) for key in self.cfg.sources},
