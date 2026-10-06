@@ -173,12 +173,13 @@ Company B,https://companyb.com,,B,true
   (A = Phase-1/top-30 picks, B = best-fit tiers, C = the rest).
 - `enabled=false` skips the company without deleting it.
 - **Loaded list:** `config/companies.csv` currently holds your 2026–2027
-  master list — **400 unique companies** (deduped from the 420-row document:
-  repeated entries like "HSBC (expanded GCC)" vs "HSBC (Tech)", "Target"
-  appearing twice, etc. were merged), plus **8 disabled `.example` test
-  companies** that power the offline fixture tests. ~250 rows carry an
-  official domain for Phase-2 discovery; the rest are blank by design
-  (never guessed).
+  master list — **381 unique companies** (deduped from the ~420-row document:
+  intra-document repeats like "Airbnb India" vs "Airbnb", "Target" appearing
+  twice, HSBC/DBS/Nomura listed in two tiers, etc. were merged; a handful of
+  rows with no verifiable official domain were skipped rather than guessed),
+  plus **8 disabled `.example` test companies** that power the offline
+  fixture tests. ~171 rows carry an official domain for Phase-2 discovery;
+  the rest are blank by design (never guessed).
 
 ## 6. Adding a new source
 

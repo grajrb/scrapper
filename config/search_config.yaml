@@ -36,6 +36,9 @@ location_aliases:
   Mumbai: [Bombay]
   Bombay: [Mumbai]
   Gurgaon: [Gurugram]
+  Gurugram: [Gurgaon]
+  Delhi: [New Delhi]
+  Bombay: [Mumbai]
 
 remote_preference: any     # any | prefer | require | onsite
 

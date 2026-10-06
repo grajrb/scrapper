@@ -70,7 +70,7 @@ def format_status_report(stats: dict[str, Any],
                            f"#{last_run.get('id')} {last_run.get('started_at')} "
                            f"({last_run.get('status')})"))
     lines.append("")
-    lines.append(f"{'SOURCE':<18}{'STATUS':<16}{'JOBS':<8}LAST RUN")
+    lines.append(f"{'SOURCE':<18}{'STATUS':<24}{'JOBS':<8}LAST RUN")
     lines.append("-" * 54)
     for row in source_rows:
         enabled = "" if row.get("enabled") else " (off in config)"
